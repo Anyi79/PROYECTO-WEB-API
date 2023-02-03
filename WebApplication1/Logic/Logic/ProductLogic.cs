@@ -13,10 +13,31 @@ namespace Logic.Logic
     public class ProductLogic : BaseContextLogic, IProductLogic
     {
         public ProductLogic(ServiceContext serviceContext) : base(serviceContext) { }
-        public void InsertProductItem(ProductItem productItem)
+
+        public List<ProductItem> GetAllProducts()
         {
-            //_serviceContext.Products.Add(productItem);
-            //_serviceContext.SaveChanges();
+            return _serviceContext.Set<ProductItem>().ToList();
         }
+        public int InsertProductItem(ProductItem productItem)
+        {
+            _serviceContext.Products.Add(productItem);
+            _serviceContext.SaveChanges();
+            return productItem.Id;
+        }
+        public void UpdateProductItem(ProductItem productItem)
+        {
+            _serviceContext.Products.Update(productItem);
+            _serviceContext.SaveChanges();
+        }
+
+        public void DeleteProductItem(int id)
+        {
+            var productToDelete = _serviceContext.Set<ProductItem>()
+            .Where(u => u.Id == id).First();
+            productToDelete.IsActive = false;
+            _serviceContext.SaveChanges();
+        }
+     
     }
 }
+

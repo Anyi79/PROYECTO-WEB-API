@@ -1,11 +1,12 @@
-﻿using APIService.IServices;
+﻿using ApiWeb.IServices;
 using Entities.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Authentication;
 
-namespace APIService.Controllers
+namespace ApiWeb.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller] /[action]")]
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
@@ -21,6 +22,26 @@ namespace APIService.Controllers
         {
             return _productService.InsertProduct(productItem);
         }
-        //[HttpPost(UserItem)]
+
+        [HttpGet(Name = "GetAllProducts")]
+        public List<ProductItem> GetAll()
+        {
+            //     _userService.ValidateCredentials(userItem);
+            return _productService.GetAllProducts();
+        }
+
+        [HttpPatch(Name = "ModifyProduct")]
+        public void Patch([FromBody] ProductItem productItem)
+        {
+            _productService.UpdateProduct(productItem);
+
+        }
+        [HttpDelete(Name = "DeleteProduct")]
+        public void Delete([FromQuery] int id)
+        {
+            _productService.DeleteProduct(id);
+
+        }
+
     }
 }

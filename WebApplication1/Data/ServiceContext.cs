@@ -18,7 +18,7 @@ namespace Data
         public DbSet<ProductItem> Products { get; set; }
         //public DbSet<OrderItem> Orders { get; set; }
         //public DbSet<RolesItem> Roles { get; set; }
-        //public DbSet<UserItem> Users { get; set; }
+        public DbSet<UserItem> Users { get; set; }
         //public DbSet<BrandItem> Brands { get; set; }
       
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,8 +32,8 @@ namespace Data
             //.WithMany()
             //.HasForeignKey(o => o.ProductId);                      
 
-            //builder.Entity<UserItem>()
-            //.ToTable("Users");
+            builder.Entity<UserItem>()
+            .ToTable("Users");
 
             //builder.Entity<RolesItem>()
             //.ToTable("Roles");
