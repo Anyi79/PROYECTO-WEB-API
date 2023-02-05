@@ -25,8 +25,6 @@ namespace ApiWeb.Services
         {
             _userLogic.UpdateUserItem(userItem);
         }
-
-
         public void DeleteUser(int id)
         {
             _userLogic.DeleteUserItem(id);

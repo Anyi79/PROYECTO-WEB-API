@@ -10,6 +10,7 @@ namespace Logic.ILogic
     public interface IProductLogic
     {
         List<ProductItem> GetAllProducts();
+        List<ProductItem> GetProductByCriteria(string Brand);
         int InsertProductItem(ProductItem productItem);
         void UpdateProductItem(ProductItem productItem);
         void DeleteProductItem(int id);

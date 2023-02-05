@@ -21,6 +21,12 @@ namespace ApiWeb.Services
         {
             return _productLogic.GetAllProducts();
         }
+
+        List<ProductItem> IProductService.GetProductByCriteria(string ProductBrand)
+        {
+            return _productLogic.GetProductByCriteria(ProductBrand);
+        }
+
         public void UpdateProduct(ProductItem productItem)
         {
             _productLogic.UpdateProductItem(productItem);

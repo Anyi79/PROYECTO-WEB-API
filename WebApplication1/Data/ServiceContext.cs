@@ -16,31 +16,28 @@ namespace Data
     {
         public ServiceContext(DbContextOptions<ServiceContext> options) : base(options) { }
         public DbSet<ProductItem> Products { get; set; }
-        //public DbSet<OrderItem> Orders { get; set; }
-        //public DbSet<RolesItem> Roles { get; set; }
+        public DbSet<OrderItem> Orders { get; set; }
+        public DbSet<RolItem> Roles { get; set; }
         public DbSet<UserItem> Users { get; set; }
-        //public DbSet<BrandItem> Brands { get; set; }
       
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ProductItem>()
             .ToTable("Products");
 
-            //builder.Entity<OrderItem>()
-            //.ToTable("Orders")
-            //.HasOne<ProductItem>()
-            //.WithMany()
-            //.HasForeignKey(o => o.ProductId);                      
+            builder.Entity<OrderItem>()
+            .ToTable("Orders");
+                   
 
             builder.Entity<UserItem>()
             .ToTable("Users");
 
-            //builder.Entity<RolesItem>()
-            //.ToTable("Roles");
+            builder.Entity<RolItem>()
+          .ToTable("Roles");
 
-            //builder.Entity<BrandItem>()
-            //.ToTable("Brands");
-      
+            builder.Entity<RolItem>()
+            .ToTable("Roles");
+
         }
     }
     public class ServiceContextFactory : IDesignTimeDbContextFactory<ServiceContext>

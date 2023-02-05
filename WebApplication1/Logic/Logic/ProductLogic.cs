@@ -18,6 +18,23 @@ namespace Logic.Logic
         {
             return _serviceContext.Set<ProductItem>().ToList();
         }
+
+        public List<ProductItem> GetProductByCriteria(string Brand)
+        {
+            var brandFilter = new ProductItem();
+            brandFilter.Brand = Brand;
+
+            var resultList = _serviceContext.Set<ProductItem>()
+                                .Where(p => p.Brand == Brand);
+
+            if (brandFilter.Brand == Brand)
+            {
+                resultList = resultList.Where(p => p.Brand == Brand);
+            }
+
+
+            return resultList.ToList();
+        }
         public int InsertProductItem(ProductItem productItem)
         {
             _serviceContext.Products.Add(productItem);
@@ -37,7 +54,6 @@ namespace Logic.Logic
             productToDelete.IsActive = false;
             _serviceContext.SaveChanges();
         }
-     
     }
 }
 

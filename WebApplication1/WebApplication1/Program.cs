@@ -1,4 +1,5 @@
 using ApiWeb.IServices;
+using ApiWeb.Service;
 using ApiWeb.Services;
 using Data;
 using Entities.Entities;
@@ -15,12 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ISecurityService, SecurityService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-//builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<ISecurityLogic, SecurityLogic>();
 builder.Services.AddScoped<IProductLogic, ProductLogic>();
-//builder.Services.AddScoped<IOrderLogic, OrderLogic>();
+builder.Services.AddScoped<IOrderLogic, OrderLogic>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
 
 builder.Services.AddDbContext<ServiceContext>(
